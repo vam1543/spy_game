@@ -1,0 +1,27 @@
+<html>
+<head>
+<meta http-equiv="Content-Type"; content="text/html; charset=utf-8">
+<title>Игра в шпиона</title>
+</head>
+<body>
+<p>Вы вошли в игру <b>{{game_key}}</b>
+
+<p>Вы игрок номер <b>{{curnom}}</b> из <b>{{gamers}}</b>
+
+<p>{{curtext1}} <font color="{{curcolor}}"><b>{{curtext2}}</b></font>
+
+<p>Ссылка для входа в игру для других игроков:
+<br><a href="{{game_url}}">{{game_url}}</a> 
+<br><i>(не нажимайте на нее, и не перезагружайте страницу, иначе вы станете еще одним игроком)</i>
+
+<hr>
+
+<p>В этой игре локация выбрана из следующего списка:
+{%for cur_loc in locs%}
+<br>{{cur_loc}}
+{%endfor%}
+
+<p>
+<p><a href="/">В начало</a>
+</body>
+</html>
