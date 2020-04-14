@@ -32,9 +32,13 @@ def subscribegame():
 def clear_games():
 	global games
 	curtime = time.time()
+	clearlist = []
 	for game_id in games.keys():
 		if games[game_id]["createtime"] < curtime - GAME_LIFETIME:
-			del games[game_id]
+			clearlist.append(game_id)
+			
+	for game_id in clearlist:
+		del games[game_id]
 
 
 def load_std_locations():
