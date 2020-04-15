@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 import time
 import random
+from datetime import datetime
 
 GAME_LIFETIME = 86400
 MIN_GAMERS = 3
@@ -137,6 +138,22 @@ def add_player():
 
 	return render_template('add_player.html', gamers=games[game_id]["gamers"], curnom=curnom, curtext1=curtext1, curtext2=curtext2, curcolor=curcolor, 
 			locs=games[game_id]["locations"], game_key=game_key, game_url=GAME_URL+game_key)
+
+@app.route('/status')
+def status():
+	global games
+	status_data = []
+	for cur in games.keys():
+		status_data.append([games[cur]["createtime"],
+			cur,
+			games[cur]["gamers"],
+			games[cur]["curcount"],
+			str(datetime.fromtimestamp(games[cur]["createtime"]))[:19],
+			])
+	status_data.sort()
+	return render_template('status.html', data=status_data)
+
+
 
 
 if __name__ == '__main__':
